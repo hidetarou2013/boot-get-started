@@ -1,5 +1,7 @@
 .gradle
 /build/
+/bin/
+/target/
 !gradle/wrapper/gradle-wrapper.jar
 
 ### STS ###
@@ -23,3 +25,7 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+
+### mysql
+/log/
+/mysql-db/

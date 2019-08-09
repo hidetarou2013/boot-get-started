@@ -84,3 +84,48 @@ $ curl -X POST http://localhost:8080/api/users -d '{"firstName": "Jiro", "lastNa
   }
 }
 ```
+
+## 調整後のサンプル起動
+
+```
+hide@WIN-KUQ7UGKMDVQ MINGW64 ~/github/hidetarou2013/boot-get-started (dev-maekawa)
+$ curl http://localhost:18001/api/users
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   746    0   746    0     0     74      0 --:--:--  0:00:10 --:--:--   197{
+  "_embedded" : {
+    "users" : [ {
+      "firstName" : "Taro",
+      "lastName" : "Yamada",
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:18001/api/users/1"
+        },
+        "user" : {
+          "href" : "http://localhost:18001/api/users/1"
+        }
+      }
+    }, {
+      "firstName" : "Hanako",
+      "lastName" : "Tanaka",
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:18001/api/users/2"
+        },
+        "user" : {
+          "href" : "http://localhost:18001/api/users/2"
+        }
+      }
+    } ]
+  },
+  "_links" : {
+    "self" : {
+      "href" : "http://localhost:18001/api/users"
+    },
+    "profile" : {
+      "href" : "http://localhost:18001/api/profile/users"
+    }
+  }
+}
+
+```

@@ -1,24 +1,29 @@
-version: '2'
+version: '3.3'
 services:
-
     dbserver:
-        image: mysql:5.7.19
+        build: ./docker/dbserver
+        image: mysql:5.7
+        restart: always
         volumes:
-            - ./sql:/docker-entrypoint-initdb.d
-            - mysql-db:/var/lib/mysql
+            - ./mysql-db:/var/lib/mysql
+            - ./docker/dbserver/initdb.d:/docker-entrypoint-initdb.d
+            - ./docker/dbserver/conf.d:/etc/mysql/conf.d
+            - ./log/dbserver:/var/log/mysql
+#        ports:
+#            - "3314:3306"
         environment:
             MYSQL_DATABASE: mydb
             MYSQL_USER: sboot
             MYSQL_PASSWORD: sboot
-            MYSQL_ROOT_PASSWORD: root
+            MYSQL_ROOT_PASSWORD: rootpassword
            
     app:
-        build: .
+        build: ./docker/app
         image: watari/boot:0.1.0                            
         depends_on:
             - dbserver
         ports:
-            - "8080:8080"
+            - "18001:8080"
         volumes:
             - .:/app
         environment:
@@ -34,7 +39,7 @@ services:
             PMA_USER: root
             PMA_PASSWORD: root
         ports:
-            - "1111:80"
+            - "18000:80"
 
 volumes:
     mysql-db:
