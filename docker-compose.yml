@@ -2,7 +2,7 @@ version: '2'
 services:
 
     dbserver:
-        image: mysql
+        image: mysql:5.7.19
         volumes:
             - ./sql:/docker-entrypoint-initdb.d
             - mysql-db:/var/lib/mysql
